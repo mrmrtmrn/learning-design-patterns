@@ -1,0 +1,11 @@
+services:
+  java:
+    image: eclipse-temurin:17
+    volumes:
+      - ./java:/app
+    working_dir: /app
+  ruby:
+    image: ruby:3.3
+    volumes:
+      - ./ruby:/app
+    working_dir: /app

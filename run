@@ -1,0 +1,32 @@
+#!/bin/bash
+set -e
+
+filepath=$1
+
+if [ -z "$filepath" ]; then
+  echo "Usage: ./run <file>"
+  echo "  例: ./run java/iterator/Main.java"
+  echo "      ./run ruby/iterator/main.rb"
+  exit 1
+fi
+
+# パスの先頭から言語を判定
+lang=${filepath%%/*}
+# 言語ディレクトリ部分を除去
+file=${filepath#"$lang/"}
+
+case $lang in
+  java)
+    classname=$(basename "$file" .java)
+    dir=$(dirname "$file")
+    docker compose run --rm java sh -c "javac $file && java -cp $dir $classname"
+    ;;
+  ruby)
+    docker compose run --rm ruby ruby "$file"
+    ;;
+  *)
+    echo "Error: 未対応の言語です: $lang"
+    echo "java/ または ruby/ から始まるパスを指定してください"
+    exit 1
+    ;;
+esac

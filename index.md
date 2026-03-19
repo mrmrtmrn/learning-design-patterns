@@ -13,12 +13,14 @@ GoFのデザインパターンを、書籍を参考にしながらJava・Rubyで
 
 ## 使い方
 
+プロジェクトルートで実行すること。
+
 ```bash
 # Java
-./run java Iterator.java
+./run java/iterator/Iterator.java
 
 # Ruby
-./run ruby iterator.rb
+./run ruby/iterator/iterator.rb
 ```
 
 ## ディレクトリ構成
